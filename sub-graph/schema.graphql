@@ -1,0 +1,21 @@
+enum poolNames {
+  BRONZE
+  SILVER
+  GOLD
+}
+
+type StakeEntity @entity {
+  id: ID!
+  timestamp: BigInt
+  stakingFunds: BigInt
+}
+
+type WithdrawEntity @entity {
+  id: ID!
+  pool: poolNames
+  userAddress: Bytes
+  principal: BigInt
+  yield: BigInt
+  userFundsRemaining: BigInt
+  stakingFundsRemaining: BigInt
+}

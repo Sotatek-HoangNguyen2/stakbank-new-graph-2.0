@@ -1,0 +1,27 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: StakBank
+    network: rinkeby
+    source:
+      address: "0x927807195C8246AB8416dcd90ae6f2931321B8b5"
+      abi: StakBank
+      startBlock: 8522600
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - StakingBegins
+        - Withdraw
+      abis:
+        - name: StakBank
+          file: ./abis/StakBank.json
+      eventHandlers:
+        - event: StakingBegins(uint256,uint256)
+          handler: handleStakingBegins
+        - event: Withdraw(uint8,address,uint256,uint256,uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/mapping.ts
