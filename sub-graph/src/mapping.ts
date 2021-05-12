@@ -23,10 +23,7 @@ export function handleWithdraw(event: Withdraw): void {
   temp.pool = event.params.pool;
   temp.userAddress = event.params.userAddress;
   temp.principal = event.params.principal;
-  if (event.params.yield != null) {
-    let aloha = event.params.yield;
-    temp.yield = aloha;
-  }
+  temp.yieldNumber = event.params.yieldNumber;
   temp.userFundsRemaining = event.params.userFundsRemaining;
   temp.stakingFundsRemaining = event.params.stakingFundsRemaining;
 

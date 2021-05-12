@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class AddedToWhitelist extends ethereum.Event {
@@ -133,7 +133,7 @@ export class Withdraw__Params {
     return this._event.parameters[2].value.toBigInt();
   }
 
-  get yield(): BigInt {
+  get yieldNumber(): BigInt {
     return this._event.parameters[3].value.toBigInt();
   }
 
@@ -246,7 +246,7 @@ export class StakBank extends ethereum.SmartContract {
   getNDays(daysStaked: BigInt, _pool: i32): BigInt {
     let result = super.call("getNDays", "getNDays(uint256,uint8):(uint64)", [
       ethereum.Value.fromUnsignedBigInt(daysStaked),
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool))
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool)),
     ]);
 
     return result[0].toBigInt();
@@ -255,7 +255,7 @@ export class StakBank extends ethereum.SmartContract {
   try_getNDays(daysStaked: BigInt, _pool: i32): ethereum.CallResult<BigInt> {
     let result = super.tryCall("getNDays", "getNDays(uint256,uint8):(uint64)", [
       ethereum.Value.fromUnsignedBigInt(daysStaked),
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool))
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool)),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -293,7 +293,7 @@ export class StakBank extends ethereum.SmartContract {
       "getUserDepositTotal(address,uint8):(uint256)",
       [
         ethereum.Value.fromAddress(userAddress),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool))
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool)),
       ]
     );
 
@@ -309,7 +309,7 @@ export class StakBank extends ethereum.SmartContract {
       "getUserDepositTotal(address,uint8):(uint256)",
       [
         ethereum.Value.fromAddress(userAddress),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool))
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool)),
       ]
     );
     if (result.reverted) {
@@ -352,7 +352,7 @@ export class StakBank extends ethereum.SmartContract {
 
   getUserFunds(_pool: i32): BigInt {
     let result = super.call("getUserFunds", "getUserFunds(uint8):(uint256)", [
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool))
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool)),
     ]);
 
     return result[0].toBigInt();
@@ -377,7 +377,7 @@ export class StakBank extends ethereum.SmartContract {
       "getUserYield(address,uint8):(uint256)",
       [
         ethereum.Value.fromAddress(userAddress),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool))
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool)),
       ]
     );
 
@@ -393,7 +393,7 @@ export class StakBank extends ethereum.SmartContract {
       "getUserYield(address,uint8):(uint256)",
       [
         ethereum.Value.fromAddress(userAddress),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool))
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool)),
       ]
     );
     if (result.reverted) {
@@ -409,7 +409,7 @@ export class StakBank extends ethereum.SmartContract {
       "getYieldMultiplier(uint256,uint8):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(daysStaked),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool))
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool)),
       ]
     );
 
@@ -425,7 +425,7 @@ export class StakBank extends ethereum.SmartContract {
       "getYieldMultiplier(uint256,uint8):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(daysStaked),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool))
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_pool)),
       ]
     );
     if (result.reverted) {
@@ -437,7 +437,7 @@ export class StakBank extends ethereum.SmartContract {
 
   isWhitelisted(_address: Address): boolean {
     let result = super.call("isWhitelisted", "isWhitelisted(address):(bool)", [
-      ethereum.Value.fromAddress(_address)
+      ethereum.Value.fromAddress(_address),
     ]);
 
     return result[0].toBoolean();

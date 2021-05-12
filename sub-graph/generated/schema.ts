@@ -107,21 +107,13 @@ export class WithdrawEntity extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get pool(): string | null {
+  get pool(): i32 {
     let value = this.get("pool");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
+    return value.toI32();
   }
 
-  set pool(value: string | null) {
-    if (value === null) {
-      this.unset("pool");
-    } else {
-      this.set("pool", Value.fromString(value as string));
-    }
+  set pool(value: i32) {
+    this.set("pool", Value.fromI32(value));
   }
 
   get userAddress(): Bytes | null {
@@ -158,8 +150,8 @@ export class WithdrawEntity extends Entity {
     }
   }
 
-  get yield(): BigInt | null {
-    let value = this.get("yield");
+  get yieldNumber(): BigInt | null {
+    let value = this.get("yieldNumber");
     if (value === null || value.kind == ValueKind.NULL) {
       return null;
     } else {
@@ -167,11 +159,11 @@ export class WithdrawEntity extends Entity {
     }
   }
 
-  set yield(value: BigInt | null) {
+  set yieldNumber(value: BigInt | null) {
     if (value === null) {
-      this.unset("yield");
+      this.unset("yieldNumber");
     } else {
-      this.set("yield", Value.fromBigInt(value as BigInt));
+      this.set("yieldNumber", Value.fromBigInt(value as BigInt));
     }
   }
 
