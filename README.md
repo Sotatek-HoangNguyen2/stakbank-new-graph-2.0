@@ -1,19 +1,19 @@
 # stakbank-new-graph-2.0
 
-## I Mô tả 
-  Project với mục đích tạo ra một worker để tự động clone dữ liệu trên blocktrain về và lưu vào trong Database.
+## I Introduction 
+  TheGraph code is aimed to create a Crawler that is schedule to crawl the data on blockchain then store it into a Database.
   
-## II Thành phần
+## II Components
 #### - graph-node
- -  Tạo ra môi trường runtime để lấy dữ liệu từ blockchains
- -  deploy subgraph thực hiện các nhiệm vụ cần thiết
+ -  Build runtime environmen to get data from the blockchain
+ -  Deploy sub-grahp
 #### - subgraph
- -  Dùng để khai báo các data từ Ethereum và lưu chúng vào database
- ######   *Các bước khai báo subgraph* 
+ -  To define the list of data that the Crawler will retrieve from the blockchain
+ ######  Step to declare sub-graph
   
-  - Định nghĩa các Entity của các hàm trên smart contract cần query dữ liệu trong file schema.graphql
+  - Define Entities that are equivalent to output of the functions on smart contract afterward these entities can be queried from schema.graphql file.
 
-  *VD:*
+  *Ex:*
   ```
     type StakeEntity @entity {
       id: ID!
@@ -21,9 +21,9 @@
       stakingFunds: BigInt
     }
   ```
-  - Viết các hàm bắt sự kiện query từ Ethereum về, và lưu dữ liệu vào trong database
+  - Defines hanlder to catch the queried data from Ethereum network then store them into database.
 
-  *VD:*
+  *Ex:*
   ```
   export function handleStakingBegins(event: StakingBegins): void {
     let id = event.transaction.hash.toHexString();
@@ -38,7 +38,7 @@
   }
   ```
   
- ## III Run project
+ ## III To run project
   #### - Start graph-node
     clone project
     cd graph-node/docker
